@@ -1,7 +1,55 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+final List<Word> words = [
+  Word('Слово 1', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
+  Word('Слово 2', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
+  Word('Слово 3', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
+  Word('Слово 4', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
+  Word('Слово 5', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
+  Word('Слово 6', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
+  Word('Слово 7', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
+  Word('Слово 8', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
+  Word('Слово 9', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
+];
+
+class HomePage extends StatefulWidget {
   HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final _controller = TextEditingController();
+
+  var _searchWords = <Word>[];
+
+  void _searchWord() {
+    final query = _controller.text;
+    if (query.isNotEmpty) {
+      _searchWords = words.where((Word word) {
+        return word.word.toLowerCase().contains(query.toLowerCase());
+      }).toList();
+    } else {
+      _searchWords = words;
+    }
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    // TODO: implement setState
+    super.initState();
+
+    _searchWords = words;
+    _searchWords.sort((a, b) {
+      return a.word[0]
+          .toString()
+          .toLowerCase()
+          .compareTo(b.word[0].toString().toLowerCase());
+    });
+    _controller.addListener((_searchWord));
+  }
 
   Future simpleDialog(BuildContext context) {
     return showDialog(
@@ -27,18 +75,6 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  List<Word> words = [
-    Word('Слово 1', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
-    Word('Слово 2', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
-    Word('Слово 3', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
-    Word('Слово 4', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
-    Word('Слово 5', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
-    Word('Слово 6', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
-    Word('Слово 7', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
-    Word('Слово 8', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
-    Word('Слово 9', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +90,8 @@ class HomePage extends StatelessWidget {
             child: Container(
               width: 40,
               height: 40,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(50)),
               child: Icon(Icons.repeat, color: Colors.white),
             ),
           )
@@ -68,10 +105,12 @@ class HomePage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 8),
               decoration: const BoxDecoration(
                 border: Border(
-                  bottom: BorderSide(color: Color.fromARGB(255, 175, 175, 175), width: 1),
+                  bottom: BorderSide(
+                      color: Color.fromARGB(255, 175, 175, 175), width: 1),
                 ),
               ),
-              child: const TextField(
+              child: TextField(
+                controller: _controller,
                 cursorColor: Color.fromARGB(255, 124, 148, 255),
                 decoration: InputDecoration(
                   hintText: 'Введите слово...',
@@ -84,10 +123,12 @@ class HomePage extends StatelessWidget {
             Expanded(
               child: ListView.separated(
                 shrinkWrap: true,
-                itemCount: words.length,
+                itemCount: _searchWords.length,
                 separatorBuilder: (BuildContext context, int index) =>
-                    const Divider(height: 3, color: Color.fromARGB(255, 199, 199, 199)),
-                itemBuilder: (context, index) => WordCard(word: words[index]),
+                    const Divider(
+                        height: 3, color: Color.fromARGB(255, 199, 199, 199)),
+                itemBuilder: (context, index) =>
+                    WordCard(word: _searchWords[index]),
               ),
             ),
           ],
