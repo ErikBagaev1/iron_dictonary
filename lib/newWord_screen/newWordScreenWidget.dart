@@ -11,12 +11,17 @@ class NewWordScreenWidget extends StatefulWidget {
 class _NewWordScreenWidgetState extends State<NewWordScreenWidget> {
   final controller1 = TextEditingController();
   final controller2 = TextEditingController();
-
+  final controller3 = TextEditingController();
+  final controller4 = TextEditingController();
   void buttonTab() {
-    words.add(Word('Слово' + ((words.length) + 1).toString(),
-        [controller1.text, controller2.text], ['Пример 1', 'Пример 2']));
+    words.add(Word(
+        'Слово' + ((words.length) + 1).toString(),
+        [controller1.text, controller2.text],
+        [controller3.text, controller4.text]));
     controller1.text = "";
     controller2.text = "";
+    controller3.text = "";
+    controller4.text = "";
   }
 
   @override
@@ -31,6 +36,14 @@ class _NewWordScreenWidgetState extends State<NewWordScreenWidget> {
           TextWidget(
             str: "Русский",
             controller: controller2,
+          ),
+          TextWidget(
+            str: "Пример 1",
+            controller: controller3,
+          ),
+          TextWidget(
+            str: "Пример 2",
+            controller: controller4,
           ),
           ElevatedButton(
               onPressed: () {
