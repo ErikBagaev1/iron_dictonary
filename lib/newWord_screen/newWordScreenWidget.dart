@@ -29,21 +29,38 @@ class _NewWordScreenWidgetState extends State<NewWordScreenWidget> {
     return Container(
       child: Column(
         children: [
-          TextWidget(
-            str: "Осетинский",
-            controller: controller1,
+          SizedBox(
+            height: 20,
           ),
-          TextWidget(
-            str: "Русский",
-            controller: controller2,
+          Container(
+            child: Column(children: [
+              TextWidget(
+                str: "Осетинский",
+                controller: controller1,
+              ),
+              TextWidget(
+                str: "Русский",
+                controller: controller2,
+              ),
+            ]),
           ),
-          TextWidget(
-            str: "Пример 1",
-            controller: controller3,
+          SizedBox(
+            height: 30,
           ),
-          TextWidget(
-            str: "Пример 2",
-            controller: controller4,
+          Container(
+            child: Column(children: [
+              TextWidget(
+                str: "Пример 1",
+                controller: controller3,
+              ),
+              TextWidget(
+                str: "Пример 2",
+                controller: controller4,
+              ),
+            ]),
+          ),
+          SizedBox(
+            height: 30,
           ),
           ElevatedButton(
               onPressed: () {
@@ -68,7 +85,7 @@ class TextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(left: 8.0, right: 8, bottom: 8),
       child: TextField(
         controller: controller,
         clipBehavior: Clip.antiAlias,
