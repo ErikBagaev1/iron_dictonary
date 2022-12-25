@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:iron_dictonary/home_page/home_page.dart';
+
+import '../home_page/home_page.dart';
 
 class NewWordScreenWidget extends StatefulWidget {
-  NewWordScreenWidget({Key? key}) : super(key: key);
+  const NewWordScreenWidget({Key? key}) : super(key: key);
 
   @override
   _NewWordScreenWidgetState createState() => _NewWordScreenWidgetState();
@@ -13,60 +14,56 @@ class _NewWordScreenWidgetState extends State<NewWordScreenWidget> {
   final controller2 = TextEditingController();
   final controller3 = TextEditingController();
   final controller4 = TextEditingController();
+
   void buttonTab() {
-    words.add(Word(
-        'Слово' + ((words.length) + 1).toString(),
-        [controller1.text, controller2.text],
-        [controller3.text, controller4.text]));
-    controller1.text = "";
-    controller2.text = "";
-    controller3.text = "";
-    controller4.text = "";
+    words.add(
+        Word('Слово${(words.length) + 1}', [controller1.text, controller2.text], [controller3.text, controller4.text]));
+    controller1.text = '';
+    controller2.text = '';
+    controller3.text = '';
+    controller4.text = '';
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          Container(
-            child: Column(children: [
-              TextWidget(
-                str: "Осетинский",
-                controller: controller1,
-              ),
-              TextWidget(
-                str: "Русский",
-                controller: controller2,
-              ),
-            ]),
-          ),
-          SizedBox(
+          Column(children: [
+            TextWidget(
+              str: 'Осетинский',
+              controller: controller1,
+            ),
+            TextWidget(
+              str: 'Русский',
+              controller: controller2,
+            ),
+          ]),
+          const SizedBox(
             height: 30,
           ),
-          Container(
-            child: Column(children: [
-              TextWidget(
-                str: "Пример 1",
-                controller: controller3,
-              ),
-              TextWidget(
-                str: "Пример 2",
-                controller: controller4,
-              ),
-            ]),
-          ),
-          SizedBox(
+          Column(children: [
+            TextWidget(
+              str: 'Пример 1',
+              controller: controller3,
+            ),
+            TextWidget(
+              str: 'Пример 2',
+              controller: controller4,
+            ),
+          ]),
+          const SizedBox(
             height: 30,
           ),
           ElevatedButton(
-              onPressed: () {
-                buttonTab();
-              },
-              child: Text('Добавить'))
+            onPressed: () {
+              buttonTab();
+            },
+            child: const Text('Добавить'),
+          ),
         ],
       ),
     );
@@ -75,7 +72,8 @@ class _NewWordScreenWidgetState extends State<NewWordScreenWidget> {
 
 class TextWidget extends StatelessWidget {
   final controller;
-  String str = "";
+
+  String str = '';
   TextWidget({
     Key? key,
     required this.str,
@@ -85,17 +83,16 @@ class TextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 8.0, right: 8, bottom: 8),
+      padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
       child: TextField(
         controller: controller,
         clipBehavior: Clip.antiAlias,
         autocorrect: false,
         decoration: InputDecoration(
-            border: OutlineInputBorder(
-                borderRadius: const BorderRadius.all(Radius.circular(4))),
+            border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(4))),
             label: Text(
               str,
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             )),
       ),
     );
