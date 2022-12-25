@@ -1,10 +1,4 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-
-class HomePage extends StatelessWidget {
-  HomePage({super.key});
-
-=======
 import 'package:iron_dictonary/newWord_screen/newWordScreenWidget.dart';
 
 final List<Word> words = [
@@ -65,7 +59,6 @@ class _HomePageState extends State<HomePage> {
     _controller.addListener((_searchWord));
   }
 
->>>>>>> add_themes_Erik
   Future simpleDialog(BuildContext context) {
     return showDialog(
       context: context,
@@ -90,21 +83,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-<<<<<<< HEAD
-  List<Word> words = [
-    Word('Слово 1', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
-    Word('Слово 2', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
-    Word('Слово 3', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
-    Word('Слово 4', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
-    Word('Слово 5', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
-    Word('Слово 6', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
-    Word('Слово 7', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
-    Word('Слово 8', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
-    Word('Слово 9', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
-  ];
-
-=======
->>>>>>> add_themes_Erik
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,51 +98,13 @@ class _HomePageState extends State<HomePage> {
             child: Container(
               width: 40,
               height: 40,
-<<<<<<< HEAD
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
-=======
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(50)),
->>>>>>> add_themes_Erik
               child: Icon(Icons.repeat, color: Colors.white),
             ),
           )
         ],
       ),
-<<<<<<< HEAD
-      body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 4),
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              decoration: const BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(color: Color.fromARGB(255, 175, 175, 175), width: 1),
-                ),
-              ),
-              child: const TextField(
-                cursorColor: Color.fromARGB(255, 124, 148, 255),
-                decoration: InputDecoration(
-                  hintText: 'Введите слово...',
-                  focusedBorder: InputBorder.none,
-                  border: InputBorder.none,
-                ),
-                style: TextStyle(fontSize: 24),
-              ),
-            ),
-            Expanded(
-              child: ListView.separated(
-                shrinkWrap: true,
-                itemCount: words.length,
-                separatorBuilder: (BuildContext context, int index) =>
-                    const Divider(height: 3, color: Color.fromARGB(255, 199, 199, 199)),
-                itemBuilder: (context, index) => WordCard(word: words[index]),
-              ),
-            ),
-          ],
-        ),
-=======
       body: IndexedStack(
         index: _selectedTab,
         children: [
@@ -234,7 +174,6 @@ class WordsScreen extends StatelessWidget {
             ),
           ),
         ],
->>>>>>> add_themes_Erik
       ),
     );
   }
