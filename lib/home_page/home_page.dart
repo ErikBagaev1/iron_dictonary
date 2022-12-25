@@ -16,7 +16,7 @@ final List<Word> words = [
 ];
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -48,7 +48,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    // TODO: implement setState
     super.initState();
 
     _searchWords = words;
@@ -69,7 +68,7 @@ class _HomePageState extends State<HomePage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Смена языка'),
+          title: const Text('Смена языка'),
           actions: <Widget>[
             TextButton(
               child: const Text(
@@ -92,7 +91,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 124, 148, 255),
+        backgroundColor: const Color.fromARGB(255, 124, 148, 255),
         centerTitle: true,
         title: Text(appBarTitles[_selectedTab]),
         actions: [
@@ -104,7 +103,7 @@ class _HomePageState extends State<HomePage> {
               width: 40,
               height: 40,
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
-              child: Icon(Icons.repeat, color: Colors.white),
+              child: const Icon(Icons.repeat, color: Colors.white),
             ),
           )
         ],
@@ -113,12 +112,12 @@ class _HomePageState extends State<HomePage> {
         index: _selectedTab,
         children: [
           WordsScreen(controller: _controller, searchWords: _searchWords),
-          NewWordScreenWidget(),
+          const NewWordScreenWidget(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedTab,
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.book_sharp), label: 'Слова'),
           BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Добавить слово'),
         ],
@@ -155,13 +154,13 @@ class WordsScreen extends StatelessWidget {
             ),
             child: TextField(
               controller: _controller,
-              cursorColor: Color.fromARGB(255, 124, 148, 255),
-              decoration: InputDecoration(
+              cursorColor: const Color.fromARGB(255, 124, 148, 255),
+              decoration: const InputDecoration(
                 hintText: 'Введите слово...',
                 focusedBorder: InputBorder.none,
                 border: InputBorder.none,
               ),
-              style: TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24),
             ),
           ),
           Expanded(
@@ -187,13 +186,12 @@ class WordCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      splashColor: Color.fromARGB(255, 168, 184, 252),
-      highlightColor: Color.fromARGB(255, 221, 227, 255),
+      splashColor: const Color.fromARGB(255, 168, 184, 252),
+      highlightColor: const Color.fromARGB(255, 221, 227, 255),
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(builder: (_) => MoreInfoPage(word: word)));
       },
       child: Container(
-        //color: Colors.red[100],
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -201,14 +199,14 @@ class WordCard extends StatelessWidget {
             Expanded(
               child: Text(
                 word.word,
-                style: TextStyle(fontSize: 18),
+                style: const TextStyle(fontSize: 18),
                 textAlign: TextAlign.start,
               ),
             ),
             Expanded(
               child: Text(
                 word.translate[0],
-                style: TextStyle(fontSize: 18),
+                style: const TextStyle(fontSize: 18),
                 textAlign: TextAlign.end,
               ),
             ),
