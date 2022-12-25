@@ -14,35 +14,26 @@ class MoreInfoPage extends StatelessWidget {
     translates += word.translate[0];
     if (word.translate.length > 1) {
       for (int i = 0; i < word.translate.length; i++) {
-        translates += ',${word.translate[i]}';
+        translates += ', ${word.translate[i]}';
       }
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    translateListToString();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 124, 148, 255),
         centerTitle: true,
-        title: const Text('Iron dictionary'),
-        actions: [
-          InkWell(
-            onTap: () {},
-            child: Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
-              child: Icon(Icons.repeat, color: Colors.white),
-            ),
-          )
-        ],
+        title: const Text('Перевод'),
       ),
-      body: Column(
+      body: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
         children: [
-          Text(word.word),
+          Text(word.word, style: TextStyle(fontSize: 28),),
           const SizedBox(height: 12),
-          Text(translates),
+          Text(translates, style: TextStyle(fontSize: 20)),
         ],
       ),
     );
