@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iron_dictonary/newWord_screen/newWordScreenWidget.dart';
 
+import '../more_info_page/more_info_page.dart';
+
 final List<Word> words = [
   Word('Слово 1', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
   Word('Слово 2', ['Перевод 1', 'Перевод 2'], ['Пример 1', 'Пример 2']),
@@ -51,10 +53,7 @@ class _HomePageState extends State<HomePage> {
 
     _searchWords = words;
     _searchWords.sort((a, b) {
-      return a.word[0]
-          .toString()
-          .toLowerCase()
-          .compareTo(b.word[0].toString().toLowerCase());
+      return a.word[0].toString().toLowerCase().compareTo(b.word[0].toString().toLowerCase());
     });
     _controller.addListener((_searchWord));
   }
@@ -98,8 +97,7 @@ class _HomePageState extends State<HomePage> {
             child: Container(
               width: 40,
               height: 40,
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(50)),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
               child: Icon(Icons.repeat, color: Colors.white),
             ),
           )
@@ -109,15 +107,14 @@ class _HomePageState extends State<HomePage> {
         index: _selectedTab,
         children: [
           WordsScreen(controller: _controller, searchWords: _searchWords),
-          NewWordScreenWidget()
+          NewWordScreenWidget(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedTab,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.book_sharp), label: 'Слова'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.add), label: 'Добавить слово'),
+          BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Добавить слово'),
         ],
         onTap: (onSelectedTab),
       ),
@@ -147,8 +144,7 @@ class WordsScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8),
             decoration: const BoxDecoration(
               border: Border(
-                bottom: BorderSide(
-                    color: Color.fromARGB(255, 175, 175, 175), width: 1),
+                bottom: BorderSide(color: Color.fromARGB(255, 175, 175, 175), width: 1),
               ),
             ),
             child: TextField(
@@ -167,10 +163,8 @@ class WordsScreen extends StatelessWidget {
               shrinkWrap: true,
               itemCount: _searchWords.length,
               separatorBuilder: (BuildContext context, int index) =>
-                  const Divider(
-                      height: 3, color: Color.fromARGB(255, 199, 199, 199)),
-              itemBuilder: (context, index) =>
-                  WordCard(word: _searchWords[index]),
+                  const Divider(height: 3, color: Color.fromARGB(255, 199, 199, 199)),
+              itemBuilder: (context, index) => WordCard(word: _searchWords[index]),
             ),
           ),
         ],
@@ -189,7 +183,9 @@ class WordCard extends StatelessWidget {
     return InkWell(
       splashColor: Color.fromARGB(255, 168, 184, 252),
       highlightColor: Color.fromARGB(255, 221, 227, 255),
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (_) => MoreInfoPage(word: word)));
+      },
       child: Container(
         //color: Colors.red[100],
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
