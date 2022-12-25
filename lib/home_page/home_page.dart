@@ -58,6 +58,12 @@ class _HomePageState extends State<HomePage> {
     _controller.addListener((_searchWord));
   }
 
+
+  List<String> appBarTitles = [
+    'Главная',
+    'Добавить слово',
+  ];
+
   Future simpleDialog(BuildContext context) {
     return showDialog(
       context: context,
@@ -88,7 +94,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 124, 148, 255),
         centerTitle: true,
-        title: const Text('Iron dictionary'),
+        title: Text(appBarTitles[_selectedTab]),
         actions: [
           InkWell(
             onTap: () {
